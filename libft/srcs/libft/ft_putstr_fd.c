@@ -12,18 +12,12 @@
 
 #include <unistd.h>
 #include <string.h>
+#include <libft.h>
 
 void	ft_putstr_fd(char const *s, int fd)
 {
-	char	*pt_s;
+	size_t	len;
 
-	if (s != NULL)
-	{
-		pt_s = (char *)s;
-		while (*pt_s != '\0')
-		{
-			write(fd, pt_s, 1);
-			pt_s++;
-		}
-	}
+	len = ft_strlen(s);
+	write(fd, s, len);
 }
