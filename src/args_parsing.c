@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   args_parsing.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eduwer <eduwer@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/21 19:06:50 by eduwer            #+#    #+#             */
+/*   Updated: 2021/01/21 20:20:16 by eduwer           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <ft_ls.h>
 
 void	parse_subargs(t_context *ctx, char *args)
@@ -18,7 +30,8 @@ void	parse_subargs(t_context *ctx, char *args)
 		else if (args[i] == 'R')
 			ctx->recursive = true;
 		else
-			print_error_details("ls: invalid option: -%.1s\n", &(args[i]), true);
+			print_error_details("ls: invalid option: -%.1s\n", \
+				&(args[i]), true);
 		++i;
 	}
 }
@@ -26,8 +39,8 @@ void	parse_subargs(t_context *ctx, char *args)
 void	parse_args(int ac, char **av, t_context *ctx)
 {
 	int		i;
-	t_bool	stop_parsing;
-	t_bool	print_default_dir;
+	bool	stop_parsing;
+	bool	print_default_dir;
 
 	i = 0;
 	stop_parsing = false;

@@ -1,16 +1,17 @@
 SRC_NAME = main.c \
-	entry_control.c \
 	print_error_funcs.c \
 	args_parsing.c \
 	sort_funcs.c \
 	helpers.c \
-	print_entries_funcs.c \
+	entries/entry_control.c \
+	entries/print_entries_funcs.c \
+	entries/print_folder.c
 
 NAME = ft_ls
 
-CC = gcc
+CC = clang
 
-CFLAGS = -Wall -Wextra -g -I./include -I./libft/include
+CFLAGS = -Wall -Wextra -Werror -g -I./include -I./libft/include
 
 SRCF = ./src/
 
@@ -23,7 +24,7 @@ LFT = libft/libft.a
 all: $(NAME)
 
 $(NAME): $(LFT) $(OBJS)
-	$(CC) -o $(NAME) $(OBJS) -g -L./libft -lft
+	$(CC) -o $(NAME) $(OBJS) -g -L./libft -lft -Wall -Wextra -Werror
 
 $(LFT):
 	make -C ./libft

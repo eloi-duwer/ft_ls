@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   entry_control.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eduwer <eduwer@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/21 19:07:10 by eduwer            #+#    #+#             */
+/*   Updated: 2021/01/21 20:25:12 by eduwer           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <ft_ls.h>
 
-t_bool	remove_entry(t_entry **first_entry, t_entry *entry)
+bool			remove_entry(t_entry **first_entry, t_entry *entry)
 {
 	if (entry->prev != NULL)
 		entry->prev->next = entry->next;
@@ -14,28 +26,8 @@ t_bool	remove_entry(t_entry **first_entry, t_entry *entry)
 	return (true);
 }
 
-void	copy_strs(t_entry *entry, char *path, char *name)
-{
-	char	*str_path;
-	char	*str_name;
-	size_t	length_path;
-	size_t	length_name;
-
-	length_path = ft_strlen(path);
-	if ((str_path = (char *)malloc(length_path + 1)) == NULL)
-		print_error("Error on malloc", true);
-	ft_memcpy(str_path, path, length_path);
-	str_path[length_path] = '\0';
-	entry->path = str_path;
-	length_name = ft_strlen(name);
-	if ((str_name = (char *)malloc(length_name + 1)) == NULL)
-		print_error("Error on malloc", true);
-	ft_memcpy(str_name, name, length_name);
-	str_name[length_name] = '\0';
-	entry->filename = str_name;
-}
-
-static t_bool	add_entry_err(t_context *ctx, char *path, t_entry **first_entry, t_entry *new_entry)
+static bool		add_entry_err(t_context *ctx, char *path, \
+	t_entry **first_entry, t_entry *new_entry)
 {
 	char *err_str;
 
@@ -46,7 +38,7 @@ static t_bool	add_entry_err(t_context *ctx, char *path, t_entry **first_entry, t
 	return (false);
 }
 
-t_bool	add_entry_beginning(t_context *ctx, t_entry **first_entry, \
+bool			add_entry_beginning(t_context *ctx, t_entry **first_entry, \
 			char *path, char *filename)
 {
 	t_entry *new_entry;
@@ -63,7 +55,7 @@ t_bool	add_entry_beginning(t_context *ctx, t_entry **first_entry, \
 	return (true);
 }
 
-t_bool	add_entry_end(t_context *ctx, t_entry **first_entry, \
+bool			add_entry_end(t_context *ctx, t_entry **first_entry, \
 			char *path, char *filename)
 {
 	t_entry *new_entry;
@@ -87,7 +79,8 @@ t_bool	add_entry_end(t_context *ctx, t_entry **first_entry, \
 	return (true);
 }
 
-void	swap_adjacent_entries(t_entry **first_entry, t_entry *one, t_entry *two)
+void			swap_adjacent_entries(t_entry **first_entry, \
+	t_entry *one, t_entry *two)
 {
 	t_entry	*mem_prev;
 	t_entry	*mem_next;
